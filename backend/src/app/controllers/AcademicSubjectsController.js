@@ -134,7 +134,7 @@ class AcademicSubjectsController {
     if (!academicSubjectTarget) {
       return res
         .status(400)
-        .json({ error: 'Not exists a academic subject with this id.' });
+        .json({ error: 'There is no academic subject with this id.' });
     }
 
     await academicSubjectTarget.destroy({

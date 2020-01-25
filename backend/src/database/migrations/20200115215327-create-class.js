@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('class', {
+    return queryInterface.createTable('classes', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

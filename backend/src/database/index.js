@@ -4,10 +4,11 @@ import Department from '../app/models/Department';
 import Professor from '../app/models/Professor';
 import Classroom from '../app/models/Classroom';
 import AcademicSubjects from '../app/models/AcademicSubjects';
+import Class from '../app/models/Class';
 
 import databaseConfig from '../config/database';
 
-const models = [Department, Professor, Classroom, AcademicSubjects];
+const models = [Department, Professor, Classroom, AcademicSubjects, Class];
 
 class Database {
   constructor() {

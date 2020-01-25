@@ -5,6 +5,7 @@ import DepartmentController from './app/controllers/DepartmentController';
 import ProfessorController from './app/controllers/ProfessorController';
 import ClassroomController from './app/controllers/ClassroomController';
 import AcademicSubjectsController from './app/controllers/AcademicSubjectsController';
+import ClassController from './app/controllers/ClassController';
 
 import authMiddleware from './app/middlewares/auth';
 import authCoordinator from './app/middlewares/auth_coordinator';
@@ -43,5 +44,10 @@ routes.delete(
   AcademicSubjectsController.delete
 );
 routes.get('/academicsubjects', AcademicSubjectsController.index);
+
+routes.post('/class', authCoordinator, ClassController.store);
+routes.put('/class/:id', authCoordinator, ClassController.update);
+routes.delete('/class/:id', authCoordinator, ClassController.delete);
+routes.get('/class', ClassController.index);
 
 export default routes;
