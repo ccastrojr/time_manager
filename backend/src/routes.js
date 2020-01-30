@@ -23,7 +23,7 @@ routes.get('/department', authCoordinator, DepartmentController.index);
 routes.post('/professor', authCoordinator, ProfessorController.store);
 routes.put('/professor', ProfessorController.update);
 routes.delete('/professor/:id', authCoordinator, ProfessorController.delete);
-routes.get('/professor/', ProfessorController.index);
+routes.get('/professor', ProfessorController.index);
 
 routes.post('/classroom', authCoordinator, ClassroomController.store);
 routes.get('/classroom', ClassroomController.index);

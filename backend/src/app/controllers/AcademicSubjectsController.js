@@ -53,7 +53,7 @@ class AcademicSubjectsController {
 
       return res.status(200).json({
         message: 'Academic Subject successfully created.',
-        data: { name, workload, semester },
+        dataRes: { name, workload, semester },
       });
     }
 
@@ -112,7 +112,7 @@ class AcademicSubjectsController {
 
         return res.status(200).json({
           message: 'Academic Subject successfully updated',
-          data: { name, workload, semester, department },
+          dataRes: { name, workload, semester, department },
         });
       }
 

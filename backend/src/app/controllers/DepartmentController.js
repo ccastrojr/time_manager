@@ -29,7 +29,7 @@ class DepartmentController {
 
     return res.status(200).json({
       message: 'Department successfully created.',
-      data: { id, name, abbreviation },
+      dataRes: { id, name, abbreviation },
     });
   }
 
@@ -63,7 +63,7 @@ class DepartmentController {
 
     return res.status(200).json({
       message: 'Department successfully updated.',
-      data: { id, name, abbreviation },
+      dataRes: { id, name, abbreviation },
     });
   }
 

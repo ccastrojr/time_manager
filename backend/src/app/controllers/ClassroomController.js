@@ -27,7 +27,7 @@ class ClassroomController {
 
     return res.status(200).json({
       message: 'Clasroom succesfully created',
-      data: { id, address, name },
+      dataRes: { id, address, name },
     });
   }
 
@@ -41,10 +41,7 @@ class ClassroomController {
       offset: (page - 1) * 20,
     });
 
-    return res.status(200).json({
-      message: 'Search successfully finished.',
-      data: classroom,
-    });
+    return res.status(200).json({ classroom });
   }
 }
 

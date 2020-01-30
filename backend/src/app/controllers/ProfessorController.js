@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import validate from './AvailabilityValidationController';
+// import validate from './AvailabilityValidationController';
 
 import Professor from '../models/Professor';
 import Department from '../models/Department';
@@ -50,12 +50,14 @@ class ProfessorController {
 
         return res.status(200).json({
           message: 'Professor succesfully created',
-          id,
-          name,
-          registration,
-          email,
-          availability,
-          is_coordinator,
+          dataRes: {
+            id,
+            name,
+            registration,
+            email,
+            availability,
+            is_coordinator,
+          },
         });
       }
 
@@ -72,7 +74,7 @@ class ProfessorController {
   async update(req, res) {
     const schema = Yup.object().shape({
       registration: Yup.string(),
-      availability: Yup.string(),
+      // availability: Yup.string(),
       currentPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
@@ -96,7 +98,7 @@ class ProfessorController {
       return res.status(401).json({ unauthorized: 'Password does not match.' });
     }
 
-    req.body.availability = validate(req.body.availability);
+    // req.body.availability = validate(req.body.availability);
 
     await professor.update(req.body);
 
@@ -104,7 +106,7 @@ class ProfessorController {
       id,
       name,
       email,
-      availability,
+      // availability,
       department,
     } = await Professor.findByPk(req.professorId, {
       include: [
@@ -118,7 +120,7 @@ class ProfessorController {
 
     return res.status(200).json({
       message: 'Professor succesfully updated.',
-      data: { id, registration, name, email, availability, department },
+      dataRes: { id, registration, name, email, department },
     });
   }
 

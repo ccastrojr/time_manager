@@ -38,12 +38,13 @@ class SessionController {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    const { id, name, is_coordinator, department } = professor;
+    const { id, name, is_coordinator, department, email } = professor;
 
     return res.json({
       professor: {
         id,
         name,
+        email,
         registration,
         is_coordinator,
         department,

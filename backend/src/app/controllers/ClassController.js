@@ -59,7 +59,7 @@ class ClassController {
 
     return res.status(200).json({
       message: 'Class successfully created',
-      data: { day_of_week, hour_class_begin, hour_class_end },
+      dataRes: { day_of_week, hour_class_begin, hour_class_end },
     });
   }
 
@@ -126,7 +126,7 @@ class ClassController {
 
     return res.status(200).json({
       message: 'Class successfully updated.',
-      data: {
+      dataRes: {
         day_of_week,
         hour_class_begin,
         hour_class_end,
@@ -181,7 +181,7 @@ class ClassController {
       offset: (page - 1) * 20,
     });
 
-    return res.status(200).json(classes);
+    return res.status(200).json({ classes });
   }
 }
 

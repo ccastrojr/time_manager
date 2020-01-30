@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
-import CoordinatorLayout from '~/pages/_layouts/coordinator';
+import LoggedLayout from '~/pages/_layouts/logged';
 import DefaulfLayout from '~/pages/_layouts/default';
 
-import store from '~/store';
+import { store } from '~/store';
 
 export default function RouteWrapper({
   component: Component,
@@ -22,7 +22,7 @@ export default function RouteWrapper({
     return <Redirect to="/dashboard" />;
   }
 
-  const Layout = signed ? CoordinatorLayout : DefaulfLayout;
+  const Layout = signed ? LoggedLayout : DefaulfLayout;
 
   return (
     <Route

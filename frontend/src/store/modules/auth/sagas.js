@@ -1,28 +1,51 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
-import { signInSuccess } from './actions';
+import { signInSuccess, signFailure } from './actions';
 
 import api from '~/services/api';
 import history from '~/services/history';
 
 export function* signIn({ payload }) {
-  const { registration, password } = payload;
+  try {
+    const { registration, password } = payload;
 
-  const response = yield call(api.post, '/sessions', {
-    registration,
-    password,
-  });
+    const response = yield call(api.post, '/sessions', {
+      registration,
+      password,
+    });
 
-  const { token, professor } = response.data;
+    const { token, professor } = response.data;
 
-  if (!professor.is_coordinator) {
-    console.tron.log('Professor não é coordenador.');
+    if (!professor.is_coordinator) {
+      toast.error('Professor não é coordenador.');
+      return;
+    }
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    yield put(signInSuccess(token, professor));
+
+    history.push('/dashboard');
+  } catch (err) {
+    toast.error('Usuário ou senha incorretos.');
+    yield put(signFailure());
+  }
+}
+
+export function setToken({ payload }) {
+  if (!payload) {
     return;
   }
 
-  yield put(signInSuccess(token, professor));
+  const { token } = payload.auth;
 
-  history.push('/dashboard');
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
 }
 
-export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
+export default all([
+  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+  takeLatest('persist/REHYDRATE', setToken),
+]);

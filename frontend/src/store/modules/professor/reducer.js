@@ -5,13 +5,19 @@ const INITIAL_STATE = {
 };
 
 export default function professor(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case '@auth/SIGN_IN_SUCCESS':
-      return produce(state, draft => {
+  return produce(state, draft => {
+    switch (action.type) {
+      case '@auth/SIGN_IN_SUCCESS': {
         draft.professor = action.payload.professor;
-      });
+        break;
+      }
 
-    default:
-      return state;
-  }
+      case '@user/UPDATE_PROFESSOR_SUCCESS': {
+        draft.professor = action.payload.professor;
+        break;
+      }
+
+      default:
+    }
+  });
 }
