@@ -158,7 +158,7 @@ class ProfessorController {
     const professors = await Professor.findAll({
       where: { department_id: professorLogged.department_id },
       order: ['name'],
-      attributes: ['name', 'email', 'availability'],
+      attributes: ['name', 'email', 'registration'],
       limit: 20,
       offset: (page - 1) * 20,
     });

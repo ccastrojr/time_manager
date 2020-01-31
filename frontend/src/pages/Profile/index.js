@@ -1,9 +1,11 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
 import { updateProfessorRequest } from '~/store/modules/professor/actions';
+import { signOut } from '~/store/modules/auth/actions';
 
 import { Container } from './styles';
 
@@ -13,6 +15,11 @@ export default function Profile() {
 
   function handleSubmit(data) {
     dispatch(updateProfessorRequest(data));
+  }
+
+  function handleSignOut() {
+    dispatch(signOut());
+    toast.info('Até a proxima!');
   }
 
   return (
@@ -44,7 +51,9 @@ export default function Profile() {
         <button type="submit">Atualizar Perfil</button>
       </Form>
 
-      <button type="button">Sair do Time Manager</button>
+      <button type="button" onClick={handleSignOut}>
+        Sair do Time Manager
+      </button>
     </Container>
   );
 }

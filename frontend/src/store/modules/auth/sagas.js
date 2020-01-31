@@ -26,6 +26,7 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, professor));
 
+    toast.info(`Bem-vindo, ${professor.name}!`);
     history.push('/dashboard');
   } catch (err) {
     toast.error('Usuário ou senha incorretos.');
@@ -45,7 +46,12 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut() {
+  history.push('/');
+}
+
 export default all([
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);
