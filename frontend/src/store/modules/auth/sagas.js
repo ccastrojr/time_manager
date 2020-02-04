@@ -19,6 +19,7 @@ export function* signIn({ payload }) {
 
     if (!professor.is_coordinator) {
       toast.error('Professor não é coordenador.');
+      yield put(signFailure());
       return;
     }
 
